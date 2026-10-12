@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* KEEP your existing font @import / <link> and your --font-display,
+   --font-body, --font-mono and --radius variables in this file. */
+
+:root {
+  --canvas-rgb: 247 248 252;
+  --surface-rgb: 255 255 255;
+  --line-rgb: 228 231 240;
+  --ink-rgb: 15 23 42;
+  --dim-rgb: 100 116 139;
+  --brand-rgb: 79 70 229;
+  --brand-dark-rgb: 67 56 202;
+  --mint-rgb: 5 150 105;
+  --sun-rgb: 217 119 6;
+  --sky-rgb: 2 132 199;
+  --danger-rgb: 220 38 38;
+  --violet-rgb: 124 58 237;
+  --amber-rgb: 245 158 11;
+  --emerald-rgb: 16 185 129;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: rgb(var(--canvas-rgb));
+    @apply font-body text-ink antialiased;
+  }
+  ::selection {
+    background: rgb(var(--brand-rgb) / 0.2);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line-rgb));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--canvas-rgb));
+  }
+}
+
+@layer components {
+  .bg-dots {
+    background-image: radial-gradient(rgb(var(--ink-rgb) / 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse at top, black 25%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top, black 25%, transparent 70%);
+  }
+  .skeleton {
+    @apply animate-shimmer rounded-md bg-[length:200%_100%];
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--line-rgb) / 0.6) 25%,
+      rgb(var(--line-rgb) / 1) 50%,
+      rgb(var(--line-rgb) / 0.6) 75%
+    );
+  }
+
+  /* ---------- SweetAlert2 (light) ---------- */
+  .swal-popup {
+    @apply !rounded-2xl !border !border-line !bg-surface !font-body !text-ink !shadow-card;
+  }
+  .swal-title {
+    @apply !font-display !text-xl !font-semibold !text-ink;
+  }
+  .swal-text {
+    @apply !text-sm !text-dim;
+  }
+  .swal-confirm {
+    @apply mx-1 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand/30 transition hover:bg-brand-dark focus:outline-none focus:ring-4 focus:ring-brand/20;
+  }
+  .swal-cancel {
+    @apply mx-1 rounded-xl border border-line bg-white px-5 py-2.5 text-sm font-semibold text-dim transition hover:bg-canvas hover:text-ink focus:outline-none;
+  }
+  .swal-toast {
+    @apply !rounded-xl !border !border-line !bg-surface !font-body !text-ink !shadow-card;
+  }
+  .swal2-timer-progress-bar {
+    background: rgb(var(--brand-rgb) / 0.8) !important;
+  }
+}
